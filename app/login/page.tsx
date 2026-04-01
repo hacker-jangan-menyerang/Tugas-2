@@ -31,7 +31,7 @@ export default function LoginPage() {
   return (
     <main className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="text-[25vw] leading-none text-[var(--color-parchment)] opacity-[0.015] font-bold select-none">
+        <span className="text-[25vw] leading-none text-primary opacity-[0.015] font-bold select-none">
           하자메
         </span>
       </div>
@@ -39,10 +39,10 @@ export default function LoginPage() {
       <div className="w-full max-w-sm relative">
         <div className="text-center mb-10 fade-in-up">
           <div className="inline-flex items-center justify-center w-16 h-16 mb-5 relative">
-            <div className="absolute inset-0 rounded-full border border-[var(--color-blood)] opacity-30" />
+            <div className="absolute inset-0 rounded-full border border-accent opacity-30" />
             <svg
               viewBox="0 0 24 24"
-              className="w-8 h-8 text-[var(--color-blood)]"
+              className="w-8 h-8 text-accent"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
@@ -52,20 +52,20 @@ export default function LoginPage() {
             </svg>
           </div>
 
-          <p className="text-xs tracking-[0.25em] text-[var(--color-silver)] uppercase mb-1">
+          <p className="text-xs tracking-[0.25em] text-muted-foreground uppercase mb-1">
             PKPL-D
           </p>
-          <h1 className="text-2xl font-bold tracking-tight text-[var(--color-parchment)] mb-1">
+          <h1 className="text-2xl font-bold tracking-tight text-primary mb-1">
             Hacker Jangan Menyerang
           </h1>
         </div>
 
-        <div className="glass rounded-xl p-8 fade-in-up fade-in-up-delay-2">
+        <div className="rounded-xl p-8 fade-in-up fade-in-up-delay-2 bg-card border border-border shadow-md">
           <div className="text-center mb-6">
-            <h2 className="text-base font-semibold tracking-wide text-[var(--color-parchment)] mb-1">
+            <h2 className="text-base font-semibold tracking-wide text-primary mb-1">
               Welcome Back
             </h2>
-            <p className="text-sm text-[var(--color-silver)]">
+            <p className="text-sm text-muted-foreground">
               Sign in to continue
             </p>
           </div>
@@ -73,10 +73,10 @@ export default function LoginPage() {
           <button
             onClick={handleGoogleLogin}
             disabled={isLoading || isSessionPending}
-            className="group w-full flex items-center justify-center gap-3 py-3.5 px-6 bg-transparent border border-[var(--border)] rounded-lg text-[var(--color-parchment)] transition-all duration-300 hover:border-[var(--color-blood)] hover:bg-[var(--color-blood)]/10 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="group w-full flex items-center justify-center gap-3 py-3.5 px-6 bg-transparent border border-border rounded-lg text-foreground transition-all duration-300 hover:border-accent hover:bg-accent/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
-              <div className="w-5 h-5 border-2 border-[var(--color-parchment)] border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
                 <svg viewBox="0 0 24 24" className="w-5 h-5">
@@ -104,7 +104,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-8 text-center fade-in-up fade-in-up-delay-4">
-          <p className="text-xs text-[var(--color-silver)] opacity-40 italic">
+          <p className="text-xs text-muted-foreground opacity-40 italic">
             &ldquo;A warrior&apos;s strength lies not in the blade, but in the restraint to not draw it.&rdquo;
           </p>
         </div>

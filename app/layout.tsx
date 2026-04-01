@@ -4,7 +4,6 @@ import { Inter, Montserrat, Open_Sans, Poppins, Roboto } from "next/font/google"
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import ThemeHydrator from "@/components/ThemeHydrator";
 import { getTheme } from "@/lib/theme";
 import { fontToCssVariable } from "@/lib/theme-shared";
 
@@ -78,7 +77,6 @@ export default async function RootLayout({
         className={`${inter.variable} ${roboto.variable} ${poppins.variable} ${montserrat.variable} ${openSans.variable} antialiased`}
         style={documentStyle}
       >
-        <ThemeHydrator />
         <Navbar />
         {children}
         <Footer
