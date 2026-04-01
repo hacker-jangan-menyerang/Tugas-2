@@ -1,16 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const { data: session, isPending: isSessionPending } = authClient.useSession();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleGoogleLogin = () => {
+  useEffect(() => {
+    if (session) {
+      router.replace("/home");
+    }
+  }, [router, session]);
+
+  const handleGoogleLogin = async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      window.location.href = "/home";
-    }, 1500);
+
+    const { error } = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/home",
+    });
+
+    if (error) {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -57,7 +72,7 @@ export default function LoginPage() {
 
           <button
             onClick={handleGoogleLogin}
-            disabled={isLoading}
+            disabled={isLoading || isSessionPending}
             className="group w-full flex items-center justify-center gap-3 py-3.5 px-6 bg-transparent border border-[var(--border)] rounded-lg text-[var(--color-parchment)] transition-all duration-300 hover:border-[var(--color-blood)] hover:bg-[var(--color-blood)]/10 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? (
@@ -86,17 +101,6 @@ export default function LoginPage() {
               </>
             )}
           </button>
-          <div className="flex items-center gap-4 my-5">
-            <div className="flex-1 h-px bg-[var(--border)]" />
-            <span className="text-xs text-[var(--color-silver)] uppercase tracking-widest">or</span>
-            <div className="flex-1 h-px bg-[var(--border)]" />
-          </div>
-
-          <Link href="/home">
-            <button className="btn-primary w-full text-center text-sm">
-              Continue as Guest
-            </button>
-          </Link>
         </div>
 
         <div className="mt-8 text-center fade-in-up fade-in-up-delay-4">
