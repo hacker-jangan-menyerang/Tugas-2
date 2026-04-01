@@ -25,26 +25,28 @@
   --color-bg-tertiary: #f1f5f9;
   --color-ink: #0f172a;
   --color-ink-light: #334155;
-  --color-blood: #8b0000;
-  --color-blood-bright: #dc2626;
-  --color-blood-light: #fef2f2;
-  --color-accent: #8b0000;
+  --accent-base: #8b0000;
   --color-slate-400: #94a3b8;
   --color-slate-300: #cbd5e1;
 
   /* Theme Variables (overridable by admin) */
   --primary: var(--color-ink);
   --primary-foreground: #ffffff;
-  --accent: var(--color-blood);
+  --accent: var(--accent-base);
   --accent-foreground: #ffffff;
   --background: var(--color-bg);
   --foreground: var(--color-ink);
-  --muted: var(--color-bg-secondary);
-  --muted-foreground: var(--color-slate-400);
-  --card: #ffffff;
-  --card-foreground: var(--color-ink);
-  --border: #e2e8f0;
-  --input-border: #e2e8f0;
+  --muted: color-mix(in srgb, var(--background) 94%, var(--foreground) 6%);
+  --muted-foreground: color-mix(in srgb, var(--foreground) 58%, var(--background) 42%);
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+  --border: color-mix(in srgb, var(--foreground) 16%, var(--background) 84%);
+  --input-border: var(--border);
+
+  /* Accent-derived helper tokens */
+  --color-blood: var(--accent);
+  --color-blood-bright: color-mix(in srgb, var(--accent) 80%, white);
+  --color-blood-light: color-mix(in srgb, var(--accent) 12%, white);
 
   /* Typography */
   --font-heading: var(--font-montserrat), sans-serif;
@@ -67,7 +69,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: #ffffff;
+  background-color: var(--background);
   color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
@@ -77,7 +79,7 @@ body {
 }
 
 html {
-  background-color: #ffffff;
+  background-color: var(--background);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -206,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Glass morphism effect - light version */
 .glass {
-  background: rgba(255, 255, 255, 0.9);
+  background: color-mix(in srgb, var(--background) 88%, var(--foreground) 12%);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
@@ -271,7 +273,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   background: var(--color-blood-light);
   color: var(--color-blood);
-  border: 1px solid rgba(139, 0, 0, 0.1);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 /* Smooth link hover */

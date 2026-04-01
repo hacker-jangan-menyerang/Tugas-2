@@ -12,6 +12,20 @@ datasource db {
   provider = "postgresql"
 }
 
+model SiteConfig {
+  id              Int      @id @default(1) // Keep only one record for global settings
+  primaryColor    String   @default("#000000")
+  accentColor     String   @default("#ffffff")
+  foregroundColor String   @default("#000000")
+  backgroundColor String   @default("#ffffff")
+  fontFamily      String   @default("sans")
+  
+  // To track who made the last change (useful for the "Security" focus)
+  authorName      String
+  authorAvatarUrl String
+  updatedAt       DateTime @updatedAt
+}
+
 model User {
   id            String    @id
   name          String
