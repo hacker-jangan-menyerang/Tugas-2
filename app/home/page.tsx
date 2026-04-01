@@ -10,36 +10,31 @@ const members = [
     id: 1,
     name: "Galih Nur Rizqy",
     npm: "2406343224",
-    role: "Halaman Biodata Publik",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Galih9&backgroundColor=FFB3D9",
+    image: "https://cosmic.csui.dev/_next/image?url=%2Fimages%2Fgalih-nur-rizqy.jpg&w=3840&q=75",
   },
   {
     id: 2,
     name: "Kevin Cornellius Widjaja",
     npm: "2406428781",
-    role: "OAuth Google (Authentication)",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kevin&backgroundColor=AED6F1",
+    image: "https://cosmic.csui.dev/_next/image?url=%2Fimages%2Fkevin-cornellius-widjaja.jpg&w=3840&q=75",
   },
   {
     id: 3,
     name: "Vincent Valentino Oei",
     npm: "2406353225",
-    role: "Backend & API Server",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vincent&backgroundColor=A3E4D7",
+    image: "https://cosmic.csui.dev/_next/image?url=%2Fimages%2Fvincent-valentino-oei.jpg&w=3840&q=75",
   },
   {
     id: 4,
     name: "Benedictus Lucky Win Ziraluo",
     npm: "2406355174",
-    role: "Authorization & Access Control",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Benedictus12&backgroundColor=F9E79F",
+    image: "https://cosmic.csui.dev/_next/image?url=%2Fimages%2Fbenedictus-lucky-win-ziraluo.jpg&w=3840&q=75",
   },
   {
     id: 5,
     name: "Roberto Eugenio Sugiarto",
     npm: "2406355640",
-    role: "Fitur Kustomisasi Tampilan",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Roberto5&backgroundColor=F5B7B1",
+    image: "https://cosmic.csui.dev/_next/image?url=%2Fimages%2Froberto-eugenio-sugiarto.jpg&w=3840&q=75",
   },
 ];
 
@@ -148,9 +143,6 @@ export default function HomePage() {
                 <h3 className="text-base font-semibold mb-1 text-card-foreground">
                   {member.name}
                 </h3>
-                <p className="text-xs font-semibold uppercase tracking-wider mb-2 text-accent">
-                  {member.role}
-                </p>
                 <p className="text-xs mb-3 text-card-foreground" style={{ opacity: 0.5 }}>
                   NPM: {member.npm}
                 </p>
