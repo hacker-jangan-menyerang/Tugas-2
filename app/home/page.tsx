@@ -116,11 +116,11 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="flex flex-wrap justify-center gap-5">
             {members.map((member) => (
               <div
                 key={member.id}
-                className="group rounded-2xl border p-6 text-center transition-all hover:-translate-y-1 bg-card border-border"
+                className="group w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.84rem)] rounded-2xl border p-6 text-center transition-all hover:-translate-y-1 bg-card border-border"
               >
                 <div className="relative mb-4">
                   <div
