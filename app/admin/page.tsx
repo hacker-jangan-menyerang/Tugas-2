@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { Sketch } from "@uiw/react-color";
 import { useIsAdmin } from "@/hooks/use-is-admin";
@@ -30,8 +29,9 @@ const FONT_CLASS_MAP: Record<ThemeFont, string> = {
   "Open Sans": "font-open-sans",
 };
 
+const HEX_COLOR_REGEX = /^#[0-9a-fA-F]{6}$/;
+
 export default function AdminPage() {
-  const router = useRouter();
   const { isAdmin, isLoading } = useIsAdmin();
   const [form, setForm] = useState<ThemeForm>(INITIAL_THEME);
   const [activeColorKey, setActiveColorKey] = useState<keyof Omit<ThemeForm, "font">>("primary");
@@ -83,9 +83,9 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (!isLoading && !isAdmin) {
-      router.replace("/home");
+      window.location.href="/home?denied=1";
     }
-  }, [isAdmin, isLoading, router]);
+  }, [isAdmin, isLoading]);
 
   const onColorChange = (key: keyof Omit<ThemeForm, "font">, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -137,7 +137,7 @@ export default function AdminPage() {
     setErrorMessage(null);
   };
 
-  if (isLoading || isThemeLoading || isAdmin === null) {
+  if (isLoading || isThemeLoading || !isAdmin) {
     return (
       <main className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
@@ -148,10 +148,6 @@ export default function AdminPage() {
     );
   }
 
-  if (!isAdmin) {
-    return null;
-  }
-
   const colorFields: Array<{ key: keyof Omit<ThemeForm, "font">; label: string }> = [
     { key: "primary", label: "Primary" },
     { key: "accent", label: "Accent" },
@@ -160,7 +156,7 @@ export default function AdminPage() {
   ];
 
   const activeColorLabel = colorFields.find((field) => field.key === activeColorKey)?.label ?? "Primary";
-  const currentPickerColor = /^#[0-9a-fA-F]{6}$/.test(form[activeColorKey])
+  const currentPickerColor = HEX_COLOR_REGEX.test(form[activeColorKey])
     ? form[activeColorKey]
     : INITIAL_THEME[activeColorKey];
 

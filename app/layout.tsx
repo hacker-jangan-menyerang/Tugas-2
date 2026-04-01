@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { getTheme } from "@/lib/theme";
 import { fontToCssVariable } from "@/lib/theme-shared";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -84,7 +85,7 @@ export default async function RootLayout({
           themeAuthorAvatarUrl={selectedTheme.authorAvatarUrl}
           themeUpdatedAt={selectedTheme.updatedAt}
         />
-
+        <Toaster/>
       </body>
     </html>
   );
