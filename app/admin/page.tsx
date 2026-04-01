@@ -165,9 +165,9 @@ export default function AdminPage() {
     : INITIAL_THEME[activeColorKey];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="container-custom py-14 px-6">
-        <form onSubmit={onSubmit} className="max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-6">
+    <main className="min-h-screen bg-background text-foreground flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-6xl">
+        <form onSubmit={onSubmit} className="grid grid-cols-1 xl:grid-cols-[1.1fr_0.9fr] gap-6">
           <section className="rounded-xl border border-border bg-card text-card-foreground shadow-md p-6 sm:p-7 space-y-6">
             <div className="flex items-center justify-between gap-4">
               <div>
@@ -196,23 +196,17 @@ export default function AdminPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {colorFields.map((field) => (
                 <label key={field.key} className="space-y-2">
-                  <span className="text-sm font-medium text-foreground flex items-center justify-between gap-2">
-                    {field.label}
+                  <span className="text-sm font-medium text-foreground">{field.label}</span>
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
                       onClick={() => openPicker(field.key)}
-                      className={`text-xs px-2 py-1 rounded border transition-all ${
+                      aria-label={`Open ${field.label} color picker`}
+                      className={`w-10 h-10 rounded-md border transition-all ${
                         activeColorKey === field.key
-                          ? "border-primary text-primary bg-primary/5"
-                          : "border-border text-muted-foreground hover:bg-muted"
+                          ? "border-primary ring-2 ring-primary/25"
+                          : "border-border hover:scale-105"
                       }`}
-                    >
-                      Pick
-                    </button>
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="w-10 h-10 rounded-md border border-border"
                       style={{ backgroundColor: form[field.key] }}
                     />
                     <input
