@@ -2,7 +2,6 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { Sketch } from "@uiw/react-color";
-import { useIsAdmin } from "@/hooks/use-is-admin";
 import { DEFAULT_THEME, FONT_OPTIONS, ThemeFont } from "@/lib/theme-shared";
 
 type ThemeForm = {
@@ -32,7 +31,6 @@ const FONT_CLASS_MAP: Record<ThemeFont, string> = {
 const HEX_COLOR_REGEX = /^#[0-9a-fA-F]{6}$/;
 
 export default function AdminPage() {
-  const { isAdmin, isLoading } = useIsAdmin();
   const [form, setForm] = useState<ThemeForm>(INITIAL_THEME);
   const [activeColorKey, setActiveColorKey] = useState<keyof Omit<ThemeForm, "font">>("primary");
   const [pickerWidth, setPickerWidth] = useState(320);
@@ -80,12 +78,6 @@ export default function AdminPage() {
 
     fetchTheme();
   }, []);
-
-  useEffect(() => {
-    if (!isLoading && !isAdmin) {
-      window.location.href="/home?denied=1";
-    }
-  }, [isAdmin, isLoading]);
 
   const onColorChange = (key: keyof Omit<ThemeForm, "font">, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -137,7 +129,7 @@ export default function AdminPage() {
     setErrorMessage(null);
   };
 
-  if (isLoading || isThemeLoading || !isAdmin) {
+  if (isThemeLoading) {
     return (
       <main className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">

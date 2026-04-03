@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { toast } from "react-hot-toast";
 
 const members = [
   {
@@ -39,30 +37,6 @@ const members = [
 ];
 
 export default function HomePage() {
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const denied = url.searchParams.get("denied");
-
-    if (denied === "1") {
-      toast.error("Access denied. Admin only area.", {
-        style: {
-          border: "1px solid #9f1239",
-          padding: "16px",
-          color: "#9f1239",
-          background: "#fff1f2",
-        },
-        iconTheme: {
-          primary: "#be123c",
-          secondary: "#ffe4e6",
-        },
-      });
-
-      url.searchParams.delete("denied");
-      const nextUrl = `${url.pathname}${url.search}${url.hash}`;
-      window.history.replaceState({}, "", nextUrl);
-    }
-  }, []);
-
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
